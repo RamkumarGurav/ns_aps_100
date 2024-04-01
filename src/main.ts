@@ -8,7 +8,6 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.setGlobalPrefix('api/v1');
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
@@ -20,6 +19,6 @@ async function bootstrap() {
       saveUninitialized: false,
     }),
   );
-  await app.listen(8001);
+  await app.listen(8000);
 }
 bootstrap();

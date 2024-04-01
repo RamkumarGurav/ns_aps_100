@@ -1,0 +1,33 @@
+<!-- // ===============>FE-TOASTER <=============== -->
+
+<div
+  aria-live="polite"
+  aria-atomic="true"
+  style="position: absolute; min-height: 200px"
+>
+  <div
+    id="customToastFE"
+    style="position: fixed; top: 10px; right: 10px; z-index: 2000"
+  ></div>
+</div>
+
+<!-- // ===============> END <=============== -->
+
+<script>
+  // ===============>FE-TOASTER <===============
+
+  // Function to hide the toast
+  // function hideToast() {
+  //   toastElement.toast('hide'); // Hide the toast
+  // }
+
+  // ===============> END <===============
+
+  // ===============> USING SESSION <===============
+  $(function () {
+    if (typeof toast_message != 'undefined') {
+      alert(toast_message);
+      // showToast(toast_type, toast_message);
+    }
+  });
+</script>

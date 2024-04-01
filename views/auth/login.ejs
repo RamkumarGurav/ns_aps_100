@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>APS | Log in</title>
+    <title><%- title %></title>
 
     <!-- Google Font: Source Sans Pro -->
     <link
@@ -13,15 +13,15 @@
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="assets/plugins/fontawesome-free/css/all.min.css"
+      href="/assets/plugins/fontawesome-free/css/all.min.css"
     />
     <!-- icheck bootstrap -->
     <link
       rel="stylesheet"
-      href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css"
+      href="/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css"
     />
     <!-- Theme style -->
-    <link rel="stylesheet" href="assets/dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css" />
   </head>
 
   <body class="hold-transition login-page">
@@ -34,6 +34,9 @@
         <div class="card-body login-card-body">
           <p class="login-box-msg">Sign in to start your session</p>
 
+          <% if(typeof message != "undefined" && message.toast_message){ %>
+            <div class="text-danger  mt-1 mb-3 px-1" style="font-size:14px;"><%- message.toast_message %></div>
+          <% } %>
           <form action="/login" method="post">
             <div class="input-group mt-3">
               <input
@@ -42,6 +45,8 @@
                 id="email"
                 name="email"
                 placeholder=" Email"
+                value="<%= typeof body.email !== 'undefined' ? body.email : '' %>"
+               
               />
               <div class="input-group-append">
                 <div class="input-group-text">
@@ -49,6 +54,10 @@
                 </div>
               </div>
             </div>
+            <% if(typeof errors != "undefined" && errors.email){ %>
+              <div class="text-danger  mt-1 mb-3 px-1" style="font-size:14px;"><%- errors.email %></div>
+            <% } %>
+            
             <div class="input-group mt-3">
               <input
                 type="password"
@@ -56,6 +65,8 @@
                 id="password"
                 name="password"
                 placeholder="Password"
+                value="<%= typeof body.password !== 'undefined' ? body.password : '' %>"
+
               />
               <div class="input-group-append">
                 <div class="input-group-text">
@@ -63,7 +74,9 @@
                 </div>
               </div>
             </div>
-
+            <% if(typeof errors != "undefined" && errors.password){ %>
+              <div class="text-danger  mt-1 mb-3 px-1" style="font-size:14px;"><%- errors.password %></div>
+            <% } %>
             <div class="row mt-3">
               <div class="col-8">
                 <div class="icheck-primary">
@@ -111,10 +124,11 @@
     <!-- /.login-box -->
 
     <!-- jQuery -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="assets/dist/js/adminlte.min.js"></script>
+    <script src="/assets/dist/js/adminlte.min.js"></script>
+    <%- include('../partials/toaster'); %>
   </body>
 </html>

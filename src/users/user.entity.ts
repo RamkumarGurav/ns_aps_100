@@ -1,21 +1,21 @@
 import { IsNotEmpty, IsString, isString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'users' })
+@Entity({ name: 'aps_users' })
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column()
   name: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column()
   email: string;
 
-  @Column({ type: 'text', nullable: false })
+  @Column()
   password: string;
 
-  @Column({ default: '1', nullable: false })
+  @Column({ default: '1' })
   @IsString()
   status: string;
 
