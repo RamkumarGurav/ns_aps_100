@@ -9,6 +9,7 @@ import { EntityNotFoundError, Like, Repository } from 'typeorm';
 import { User } from './user.entity';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { LoginDto } from 'src/auth/dtos/login.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -20,6 +21,14 @@ export class UsersService {
   async createOne(createUserDto: CreateUserDto) {
     const newUser = await this.usersRepository.create(createUserDto);
     return await this.usersRepository.save(createUserDto);
+  }
+
+  async updateOne(id: number, updateUserDto: UpdateUserDto) {
+    const toUpdate = await this.usersRepository.findOne({ where: { id } });
+
+    const updated = Object.assign(toUpdate, updateUserDto);
+
+    return await this.usersRepository.save(updated);
   }
 
   async findOneByEmailAndPassword(email: string, password: string) {

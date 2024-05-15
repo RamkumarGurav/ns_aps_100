@@ -14,7 +14,7 @@ async function bootstrap() {
   app.setViewEngine('ejs');
   app.use(
     session({
-      secret: 'my-secret',
+      secret: 'secret',
       resave: false,
       saveUninitialized: false,
     }),

@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsString, isString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'aps_users' })
-export class User {
+@Entity({ name: 'aps_products' })
+export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,10 +10,7 @@ export class User {
   name: string;
 
   @Column('text')
-  email: string;
-
-  @Column('text')
-  password: string;
+  description: string;
 
   @Column({ default: '1' })
   @IsString()
